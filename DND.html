@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dungeons and Dragons 5th Edition Character Creator</title>
+  <link rel="stylesheet" href="styles.css" >
+</head>
+
+<body>
+  <h1>Dungeons and Dragons 5th Edition Character Creator</h1>
+  <p>Please select your character's name and race.</p>
+  <div>
+  
+  <h2> Name </h2>
+  <form>
+	<input type="text" id="Character_Name_ID"><br> <br>
+	</form>
+	
+	<h2> Gender </h2>
+	<form>
+	<table >
+		<tr>
+			<th>Male</th>
+			<th>Female</th>
+			<th>No Gender</th>
+			<th>Other</th>
+		</tr>
+		<tr> 
+			<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Male" checked></td>
+			<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Female" ></td>
+			<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="No_Gender" ></td>
+			<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Other" > </td>
+		</tr>
+	</table>
+	</form><br>
+	
+	<h2> Race </h2>
+	<form>
+	<table>
+		<tr>
+			<th>Dwarf</th>
+			<th>Elf</th>
+			<th>Halfling</th>
+			<th>Human</th>
+			<th>Dragonborn</th>
+			<th>Gnome</th>
+			<th>Half-Elf</th>
+			<th>Tiefling</th>
+		</tr>
+		<tr>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Dwarf"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Elf"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Halfling"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Human"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Dragonborn"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Gnome"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Half_Elf"></td>
+			<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Tiefling"></td>
+		</tr>
+		<tr>
+			<td> <a href="Races/Dwarf.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Elf.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Halfling.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Human.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Dragonborn.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Gnome.html" target="_blank">Info</a></td>
+			<td> <a href="Races/HalfElf.html" target="_blank">Info</a></td>
+			<td> <a href="Races/Tiefling.html" target="_blank">Info</a></td>
+		</tr>
+	</table>
+  </form>
+  <br><br>
+  
+  <h2>Sub Race </h2>
+  <form>
+	<div id="sr_dwarf" hidden>
+	<table>
+		<tr>
+			<th>Hill Dwarf</th>
+			<th>Mountain Dwarf</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Hill_Dwarf"></td>
+			<td><input type="radio" name="Character_SubRace" value="Mountain_Dwarf"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_elf" hidden>
+	<table>
+		<tr>
+			<th>High Elf</th>
+			<th>Wood Elf</th>
+			<th>Dark Elf(Drow)</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="High_Elf"></td>
+			<td><input type="radio" name="Character_SubRace" value="Wood_Elf"></td>
+			<td><input type="radio" name="Character_SubRace" value="Dark_Elf"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_halfling" hidden>
+	<table>
+		<tr>
+			<th>Lightfoot</th>
+			<th>Stout</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Lightfoot_Halfling"></td>
+			<td><input type="radio" name="Character_SubRace" value="Stout_Halfling"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_human" hidden>
+	<table>
+		<tr>
+			<th>Human</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Human"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_dragonborn" hidden>
+	<table>
+		<tr>
+			<th>Dragonborn</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Dragonborn"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_gnome" hidden>
+	<table>
+		<tr>
+			<th>Forest Gnome</th>
+			<th>Rock Gnome</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Forest_Gnome"></td>
+			<td><input type="radio" name="Character_SubRace" value="Rock_Gnome"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_halfelf" hidden>
+	<table>
+		<tr>
+			<th>Half-Elf</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Halfelf"></td>
+		</tr>
+	</table>
+	</div>
+	
+	<div id="sr_tiefling" hidden>
+	<table>
+		<tr>
+			<th>Tiefling</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubRace" value="Tiefling"></td>
+		</tr>
+	</table>
+	</div>
+  </form>
+  
+  <h2>Class</h2>
+  <form>
+	<table>
+		<tr>
+			<th>Barbarian</th>
+			<th>Bard</th>
+			<th>Cleric</th>
+			<th>Druid</th>
+			<th>Fighter</th>
+			<th>Monk</th>
+			<th>Paladin</th>
+			<th>Ranger</th>
+			<th>Rogue</th>
+			<th>Sorcerer</th>
+			<th>Warlock</th>
+			<th>Wizard</th>
+		</tr>
+		<tr>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Barbarian"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Bard"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Cleric"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Druid"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Fighter"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Monk"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Paladin"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Ranger"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Rogue"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Sorcerer"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Warlock"></td>
+			<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Wizard"></td>
+		</tr>
+		<tr>
+			<td> <a href="Classes/Barbarian.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Bard.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Cleric.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Druid.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Fighter.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Monk.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Paladin.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Ranger.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Rogue.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Sorcerer.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Warlock.html" target="_blank">Info</a></td>
+			<td> <a href="Classes/Wizard.html" target="_blank">Info</a></td>
+		</tr>
+	</table>
+  </form>
+  
+  <h2>Sub Class</h2>
+  <form>
+	<div id="sc_barbarian" hidden>
+	<p>Primal Paths</p>
+	<table>
+		<tr>
+			<th>Path of the Berserker</th>
+			<th>Path of the Totem Warrior</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Barbarian_Berserker"></td>
+			<td><input type="radio" name="Character_SubClass" value="Barbarian_Totem_Warrior"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_bard" hidden>
+	<p>Bard Colleges</p>
+	<table>
+		<tr>
+			<th>College of Lore</th>
+			<th>College of Valor</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Bard_Lore"></td>
+			<td><input type="radio" name="Character_SubClass" value="Bard_Valor"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_cleric" hidden>
+	<p>Divine Domains</p>
+	<table>
+		<tr>
+			<th>Knowledge Domain</th>
+			<th>Life Domain</th>
+			<th>Light Domain</th>
+			<th>Nature Domain</th>
+			<th>Tempest Domain</th>
+			<th>Trickery Domain</th>
+			<th>War Domain</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Knowledge"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Life"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Light"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Nature"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Tempest"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_Trickery"></td>
+			<td><input type="radio" name="Character_SubClass" value="Cleric_War"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_druid" hidden>
+	<p>Druid Circle</p>
+	<table>
+		<tr>
+			<th>Circle of the Land</th>
+			<th>Circle of the Moon</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Druid_Land"></td>
+			<td><input type="radio" name="Character_SubClass" value="Druid_Moon"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_fighter" hidden>
+	<p>Martial Archetypes</p>
+	<table>
+		<tr>
+			<th>Champion</th>
+			<th>Battle Master</th>
+			<th>Eldritch Knight</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Fighter_Champion"></td>
+			<td><input type="radio" name="Character_SubClass" value="Fighter_Battle"></td>
+			<td><input type="radio" name="Character_SubClass" value="Fighter_Eldritch"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_monk" hidden>
+	<p>Monastic Traditions</p>
+	<table>
+		<tr>
+			<th>Way of the Open Hand</th>
+			<th>Way of Shadow</th>
+			<th>Way of the Four Elements</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Monk_Open_Hand"></td>
+			<td><input type="radio" name="Character_SubClass" value="Monk_Shadow"></td>
+			<td><input type="radio" name="Character_SubClass" value="Monk_Four_Elements"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_paladin" hidden>
+	<p>Sacred Oaths</p>
+	<table>
+		<tr>
+			<th>Oath of Devotion</th>
+			<th>Oath of the Ancients</th>
+			<th>Oath of Vengeance</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Paladin_Devotion"></td>
+			<td><input type="radio" name="Character_SubClass" value="Paladin_Ancients"></td>
+			<td><input type="radio" name="Character_SubClass" value="Paladin_Vengeance"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_ranger" hidden>
+	<p>Ranger Archetypes</p>
+	<table>
+		<tr>
+			<th>Hunter</th>
+			<th>Beast Master</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Ranger_Hunter"></td>
+			<td><input type="radio" name="Character_SubClass" value="Ranger_Beast_Master"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_rogue" hidden>
+	<p>Roguish Archetypes</p>
+	<table>
+		<tr>
+			<th>Thief</th>
+			<th>Assassin</th>
+			<th>Arcane Trickster</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Rogue_Thief"></td>
+			<td><input type="radio" name="Character_SubClass" value="Rogue_Assassin"></td>
+			<td><input type="radio" name="Character_SubClass" value="Rogue_Arcane"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_sorcerer" hidden>
+	<p>Sorcerous Origins</p>
+	<table>
+		<tr>
+			<th>Draconic Bloodline</th>
+			<th>Wild Magic</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Sorceror_Draconic"></td>
+			<td><input type="radio" name="Character_SubClass" value="Sorceror_Wild"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_warlock" hidden>
+	<p>Otherworldly Patrons</p>
+	<table>
+		<tr>
+			<th>The Archfey</th>
+			<th>The Fiend</th>
+			<th>The Great Old One</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Warlock_Archfay"></td>
+			<td><input type="radio" name="Character_SubClass" value="Warlock_Fiend"></td>
+			<td><input type="radio" name="Character_SubClass" value="Warlock_Great_Old_One"></td>
+		</tr>
+	</table>
+	</div>
+	<div id="sc_wizard" hidden>
+	<p>Arcane Traditions</p>
+	<table>
+		<tr>
+			<th>School of Abjuration</th>
+			<th>School of Conjuration</th>
+			<th>School of Divination</th>
+			<th>School of Enchantment</th>
+			<th>School of Evocation</th>
+			<th>School of Illusion</th>
+			<th>School of Necromancy</th>
+			<th>School of Transmutation</th>
+		</tr>
+		<tr>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Abjuration"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Conjuration"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Divination"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Enchantment"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Evocation"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Illusion"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Necromancy"></td>
+			<td><input type="radio" name="Character_SubClass" value="Wizard_Transmutation"></td>
+		</tr>
+	</table>
+	</div>
+  </form>
+  
+	<script>
+
+	function detailed_Race(Character_Race){
+		document.getElementById("sr_dwarf").hidden = true;
+		document.getElementById("sr_elf").hidden = true;
+		document.getElementById("sr_halfling").hidden = true;
+		document.getElementById("sr_human").hidden = true;
+		document.getElementById("sr_dragonborn").hidden = true;
+		document.getElementById("sr_gnome").hidden = true;
+		document.getElementById("sr_halfelf").hidden = true;
+		document.getElementById("sr_tiefling").hidden = true;
+		switch(String(Character_Race)) {
+			case "Dwarf":
+				document.getElementById("sr_dwarf").hidden = false;
+				break;
+			case "Elf":
+				document.getElementById("sr_elf").hidden = false;
+				break;
+			case "Halfling":
+				document.getElementById("sr_halfling").hidden = false;
+				break;
+			case "Human":
+				document.getElementById("sr_human").hidden = false;
+				break;
+			case "Dragonborn":
+				document.getElementById("sr_dragonborn").hidden = false;
+				break;
+			case "Gnome":
+				document.getElementById("sr_gnome").hidden = false;
+				break;
+			case "Half_Elf":
+				document.getElementById("sr_halfelf").hidden = false;
+				break;
+			case "Tiefling":
+				document.getElementById("sr_tiefling").hidden = false;
+				break;		
+		}
+	}
+		
+		function detailed_Class(Character_Class){
+		document.getElementById("sc_barbarian").hidden = true;
+		document.getElementById("sc_bard").hidden = true;
+		document.getElementById("sc_cleric").hidden = true;
+		document.getElementById("sc_druid").hidden = true;
+		document.getElementById("sc_fighter").hidden = true;
+		document.getElementById("sc_monk").hidden = true;
+		document.getElementById("sc_paladin").hidden = true;
+		document.getElementById("sc_ranger").hidden = true;
+		document.getElementById("sc_rogue").hidden = true;
+		document.getElementById("sc_sorcerer").hidden = true;
+		document.getElementById("sc_warlock").hidden = true;
+		document.getElementById("sc_wizard").hidden = true;
+		switch(String(Character_Class)) {
+			case "Barbarian":
+				document.getElementById("sc_barbarian").hidden = false;
+				break;
+			case "Bard":
+				document.getElementById("sc_bard").hidden = false;
+				break;
+			case "Cleric":
+				document.getElementById("sc_cleric").hidden = false;
+				break;
+			case "Druid":
+				document.getElementById("sc_druid").hidden = false;
+				break;
+			case "Fighter":
+				document.getElementById("sc_fighter").hidden = false;
+				break;
+			case "Monk":
+				document.getElementById("sc_monk").hidden = false;
+				break;
+			case "Paladin":
+				document.getElementById("sc_paladin").hidden = false;
+				break;
+			case "Ranger":
+				document.getElementById("sc_ranger").hidden = false;
+				break;		
+			case "Rogue":
+				document.getElementById("sc_rogue").hidden = false;
+				break;		
+			case "Sorcerer":
+				document.getElementById("sc_sorcerer").hidden = false;
+				break;		
+			case "Warlock":
+				document.getElementById("sc_warlock").hidden = false;
+				break;		
+			case "Wizard":
+				document.getElementById("sc_wizard").hidden = false;
+				break;		
+		}
+	}
+	
+	</script>
+  </div>
+</body>
+
+</html>

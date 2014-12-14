@@ -1,0 +1,97 @@
+body {
+    background-color: #cccccc;
+}
+
+
+h1 {
+    color: black;
+    text-align: center;
+}
+
+h2 {
+	color: black;
+	text-align: center;
+}
+
+h3 {
+	color: black;
+	font-size: 30px;
+	text-align: center;
+}
+
+p {
+    font-family: "Times New Roman";
+    font-size: 24px;
+	margin: 0 auto;
+	text-align: center;
+	width: 50%;
+}
+
+
+form {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+    width: 50%;
+}
+
+input[type=text] {
+	font-size: 24px;
+}
+
+table {
+	width: 90%;
+}
+table, th, td {
+	border: 1px solid black;
+	margin: 0 auto;
+	font-size: 24px;
+	text-align: center;
+}
+
+/* Start Radio Buttons */
+input[type=radio] {
+    display: none;
+}
+input[type=radio] {
+	width: 2em;
+    height: 2em;
+    content: '';
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 50%;
+    margin: 0 0.5em;
+}
+input[type=radio]:checked{
+    background-color: #ffa;
+}
+/* End Radio Buttons */
+
+/*Start Left Nav */
+#left_nav {
+    background-color:#eeeeee;
+    width:10%;
+    float:left;
+    padding:10px;
+}
+/*End Left Nav */
+
+/*Start Section */
+#section {
+	width:75%;
+    float:left;
+    padding:10px;
+}
+/*End Section*/
+
+/*Start Footer */
+#footer {
+	background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px; 
+}
+/*End Footer*/
+
+
