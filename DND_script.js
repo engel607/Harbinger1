@@ -11,7 +11,7 @@ var vCharacter_Height_in = "";
 var vCharacter_Weight = "";
 var vCharacter_XP = "";
 var vCharacter_Name = "";
-var vCharacter_Player = "";
+var vCharacter_Player_Name = "";
 var vCharacter_Strength = "";
 var vCharacter_Strength_Mod = "";
 var vCharacter_Dexterity = "";
@@ -137,16 +137,131 @@ var rollWeightValue = 0;
 		
 	}
 	
-	function store_Name(Character_Name){
+	function store_PName(Player_Name){
+		vCharacter_Player_Name = Player_Name;
+	}
+	
+	function store_CName(Character_Name){
 		vCharacter_Name = Character_Name;
 	}
 	
-	function saveFile(){
-		var processingInstance = Processing.getInstanceById('mycanvas');
-		
-		processingInstance.clearPDF();
-		processingInstance.writePDF1();
+	function rollAbilityScores(){
+		var score1,score2,score3,score4,score5,score6;
+		score1 = sum3highest();
+		score2 = sum3highest();
+		score3 = sum3highest();
+		score4 = sum3highest();
+		score5 = sum3highest();
+		score6 = sum3highest();
+		document.getElementById("score1").value = score1;
+		document.getElementById("score2").value = score2;
+		document.getElementById("score3").value = score3;
+		document.getElementById("score4").value = score4;
+		document.getElementById("score5").value = score5;
+		document.getElementById("score6").value = score6;
 	}
+	
+	function sum3highest(){
+	var roll1 = rollD6();
+	var roll2 = rollD6();
+	var roll3 = rollD6();
+	var roll4 = rollD6();
+	
+	var high1 = roll1 + roll2 + roll3;
+	var high2 = roll1 + roll2 + roll4;
+	var high3 = roll1 + roll3 + roll4;
+	var high4 = roll2 + roll3 + roll4;
+	return Math.max(high1,high2,high3,high4);
+	}
+	
+	
+	
+	function saveFile(){
+		genPDF1();
+		genPDF2();
+	}
+	
+	function genPDF1(){
+		var pdf1Instance = Processing.getInstanceById('mycanvas');
+		pdf1Instance.clearPDF();
+		writeTextPdf1(vCharacter_Name,100,130); //Character Name Location
+		//Top right box
+		writeTextPdf1("Lvl " + String(vCharacter_Level) + " " + String(vCharacter_Class) ,475,105); //Class Location
+		writeTextPdf1("Background ",680,105); //Background Location
+		writeTextPdf1(vCharacter_Player_Name,850,105); //Player Name Location
+
+		writeTextPdf1(vCharacter_Race,475,150); //Race Location
+		writeTextPdf1("Lawful Good ",680,150); //Alignment Location
+		writeTextPdf1("500 ",850,150); //Experience Points Location
+
+		//1st Left Boxes
+		writeTextPdf1("500 ",80,300); // Strength Location
+		writeTextPdf1("500 ",80,345); // Strength Mod Location
+
+		writeTextPdf1("500 ",80,430); // Dexterity Location
+		writeTextPdf1("500 ",80,475); // Dexterity Mod Location
+
+		writeTextPdf1("500 ",80,560); // Constitution Location
+		writeTextPdf1("500 ",80,600); // Constitution Mod Location
+
+		writeTextPdf1("500 ",80,690); // Intelligence Location
+		writeTextPdf1("500 ",80,730); // Intelligence Mod Location
+
+		writeTextPdf1("500 ",80,820); // Wisdom Location
+		writeTextPdf1("500 ",80,857); // Wisdom Mod Location
+
+		writeTextPdf1("500 ",80,945); // Charisma Location
+		writeTextPdf1("500 ",80,985); // Charisma Mod Location
+
+		writeTextPdf1("500 ",58,1070); // Passive Wisdom Location
+
+		//2nd Left Boxes
+		writeTextPdf1("500 ",80,490); // Strength Location
+		writeTextPdf1("500 ",80,345); // Strength Mod Location
+
+		writeTextPdf1("500 ",80,430); // Dexterity Location
+		writeTextPdf1("500 ",80,475); // Dexterity Mod Location
+
+		writeTextPdf1("500 ",80,560); // Constitution Location
+		writeTextPdf1("500 ",80,600); // Constitution Mod Location
+
+		writeTextPdf1("500 ",80,690); // Intelligence Location
+		writeTextPdf1("500 ",80,730); // Intelligence Mod Location
+
+		writeTextPdf1("500 ",80,820); // Wisdom Location
+		writeTextPdf1("500 ",80,857); // Wisdom Mod Location
+
+		writeTextPdf1("500 ",80,945); // Charisma Location
+		writeTextPdf1("500 ",80,985); // Charisma Mod Location
+
+		writeTextPdf1("500 ",58,1070); // Passive Wisdom Location
+	
+	}
+	
+	function genPDF2(){
+		var pdf2Instance = Processing.getInstanceById('canvasPDF2');
+		pdf2Instance.clearPDF();
+		writeTextPdf2(vCharacter_Name,100,130); //Character Name Location
+		//Top right box
+		writeTextPdf2("25",475,105); //Age Location
+		writeTextPdf2(String(vCharacter_Height_ft)+"'"+String(vCharacter_Height_in)+'"',680,105); //Height Location
+		writeTextPdf2(vCharacter_Weight,850,105); //Weight Location
+
+		writeTextPdf2("Blue",475,150); //Eyes Location
+		writeTextPdf2("White ",680,150); //Skin Location
+		writeTextPdf2("Brown ",850,150); //Hair Location
+	}
+	
+	function writeTextPdf1(TextToWrite,xcoord,ycoord){
+		var pdf1Instance = Processing.getInstanceById('mycanvas');
+		pdf1Instance.text(String(TextToWrite),xcoord,ycoord);
+	}
+	
+	function writeTextPdf2(TextToWrite,xcoord,ycoord){
+		var pdf2Instance = Processing.getInstanceById('canvasPDF2');
+		pdf2Instance.text(String(TextToWrite),xcoord,ycoord);
+	}
+	
 	
 	function rollHeight() {
 		 rollHeightValue = 0;

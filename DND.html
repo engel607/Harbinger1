@@ -7,7 +7,7 @@
 	<script src="Pdf/processing.min.js"></script>
 </head>
 
-<body>
+<body id="html_char_creator">
 	<div id="left_nav">
 		<h1> Navigation</h1>
 		<iframe src="Navigation/Left_Nav.html" width=100% height=800></iframe>
@@ -16,27 +16,31 @@
 		<h1> Current Configuration</h1>
 		<iframe src="Navigation/Right_Nav.html" width=100% height=800></iframe>
 	</div>
-	<div id="section">
+	<div id="section_char_creator">
 	<h1>Dungeons and Dragons 5th Edition Character Creator</h1>
+	<hr>
 	<p>Please select your character's name and race.</p>
-
 	<div>
-		<form><table id="charNameLvl">
+	<form>
+		<table id="charNameLvl">
 			<tr>
-				<th> Name </th>
+				<th> Player Name </th>
+				<th> Character Name </th>
 				<th>Level</th>
-				<th>Gender</th>
 			</tr>
 			<tr>
-				<td><input type="text" id="Character_Name_ID" onchange="store_Name(this.value)"></td>
+				<td><input type="text" id="Player_Name_ID" onchange="store_PName(this.value)"></td>
+				<td><input type="text" id="Character_Name_ID" onchange="store_CName(this.value)"></td>
 				<td> <input type="number"  id="level_ID"  onchange="store_Level(this.value)" name="level" min="1" max="50" value="1"></td>
 				<td>
-			<table>
+			</tr>
+			<tr>
+				<table id="charNameLvl">
 				<tr>
 					<th>Male</th>
 					<th>Female</th>
 					<th>No Gender</th>
-					<th>Other</th>
+					<th>Other Gender</th>
 				</tr>
 				<tr>
 					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Male" checked></td>
@@ -44,13 +48,14 @@
 					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="No_Gender" ></td>
 					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Other" > </td>
 				</tr>
+				
 			</table></td>
-		</table></form>
+				</tr>
+		</table>
 	</div>
 
 	<h2> Race </h2>
-	<form>
-		<table>
+		<table id="charNameLvl">
 			<tr>
 				<th><a href="Races/Dwarf.html" target="_blank">Dwarf</th>
 				<th><a href="Races/Elf.html" target="_blank">Elf</th>
@@ -76,11 +81,9 @@
 				<td><input type="radio"  name="Character_Race" onclick="detailed_Race(this.value)" value="Tiefling"></td>
 			</tr>
 		</table>
-	</form>
 	<br><br>
 
 	<h2>Sub Race </h2>
-	<form>
 		<div id="sr_default" >
 			<p>Select a race to view subraces.</p>
 		</div>
@@ -181,10 +184,8 @@
 				</tr>
 			</table>
 		</div>
-</form>
 
 	<h2>Class</h2>
-	<form>
 		<table>
 			<tr>
 				<th><a href="Classes/Barbarian.html" target="_blank">Barbarian</th>
@@ -219,10 +220,8 @@
 				<td><input type="radio"  name="Character_Class" onclick="detailed_Class(this.value)" value="Wizard"></td>
 			</tr>
 		</table>
-</form>
 
 	<h2>Sub Class</h2>
-	<form>
 		<div id="sc_default" >
 			<p>Select a class to view subclasses.</p>
 		</div>
@@ -422,10 +421,8 @@
 				</tr>
 			</table>
 		</div>
-	</form>
 
 	
-	<form>
 		<h2>Height and Weight</h2>
 		<table>
 			<tr>
@@ -435,8 +432,8 @@
 			<tr>
 				<td>
 					<input type="button" value="Roll" onclick="rollHeight()">
-					<input type="number" min="2" max="12" id="char_Height_ft">ft
-					<input type="number" min="0" max="11" id="char_Height_in">in
+					<input type="number" min="2" max="12" onchange="" id="char_Height_ft">ft
+					<input type="number" min="0" max="11" onchange="" id="char_Height_in">in
 				</td>
 				<td>
 					<input type="button" value="Roll" onclick="rollWeight()">
@@ -444,17 +441,116 @@
 				</td>
 			</tr>
 		</table>
-	</form>
 	
-	<form>
-		<input type="button" value="Generate PDF" onclick="saveFile()">
-	</form>
+		<h2>Character Details</h2>
+		<table>
+			<tr>
+				<th>Age</th>
+				<th>Eye Color</th>
+				<th>Skin Color</th>
+				<th>Hair Color</th>
+			</tr>
+			<tr>
+				<td><input type="number" min="0" max="2000" onchange="" id="char_age_ID"></td>
+				<td><select>
+					  <option value="blue">Blue</option>
+					  <option value="green">Green</option>
+					  <option value="brown">Brown</option>
+					  <option value="hazel">Hazel</option>
+					</select></td>
+				<td> <select>
+					  <option value="white">White</option>
+					  <option value="tan">Tan</option>
+					  <option value="black">Black</option>
+					</select></td>
+				<td> <select>
+					  <option value="brown">Brown</option>
+					  <option value="blonde">Blonde</option>
+					  <option value="red">Red</option>
+					  <option value="black">Black</option>
+					  <option value="white">White</option>
+					</select></td>
+			</tr>
+		</table>
+		
+		<h2>Ability Scores</h2>
+		<input type="button" value="Roll Ability Scores" onclick="rollAbilityScores()">
+		<table>
+			<tr>
+				<td><input type="text" id="score1"></td>
+				<td><input type="text" id="score2"></td>
+				<td><input type="text" id="score3"></td>
+			</tr>
+			<tr>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="score4"></td>
+				<td><input type="text" id="score5"></td>
+				<td><input type="text" id="score6"></td>
+			</tr>
+			<tr>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+				<td><select>
+					<option value="Strength">Strength</option>
+					<option value="Dexterity">Dexterity</option>
+					<option value="Constitution">Constitution</option>
+					<option value="Intelligence">Intelligence</option>
+					<option value="Wisdom">Wisdom</option>
+					<option value="Charisma">Charisma</option>
+				</select></td>
+			</tr>
+		</table>
 
+		<input type="button" value="Generate PDF" onclick="saveFile()">
+</form>
+</div>
 	<div id=canvas1>
 	<canvas id="mycanvas"></canvas>
 	</div>
 	<div id=canvas1>
 	<canvas id="canvasPDF2"></canvas>
+	</div>
+	<div id=canvas1>
+	<canvas id="canvasPDF3"></canvas>
 	</div>
 
 	<script type="text/processing" data-processing-target="mycanvas">
@@ -469,7 +565,6 @@
 		noLoop();
 		PFont fontA = loadFont("courier");
 		textFont(fontA, 16);
-		writePDF1();
 	}
 	void draw() {
 	}
@@ -477,60 +572,6 @@
 		pdf1 = loadImage("Pdf/pdf1.png");
 		background(pdf1);
 		fill(0);
-	}
-	void writePDF1()
-	{
-		text(vCharacter_Name,100,130); //Character Name Location
-		//Top right box
-		text("Lvl " + String(vCharacter_Level) + " " + String(vCharacter_Class) ,475,105); //Class Location
-		text("Background ",680,105); //Background Location
-		text("Matt ",850,105); //Player Name Location
-		//text("Human ",475,150); //Race Location
-		text(vCharacter_Race,475,150); //Race Location
-		text("Lawful Good ",680,150); //Alignment Location
-		text("500 ",850,150); //Experience Points Location
-
-		//1st Left Boxes
-		text("500 ",80,300); // Strength Location
-		text("500 ",80,345); // Strength Mod Location
-
-		text("500 ",80,430); // Dexterity Location
-		text("500 ",80,475); // Dexterity Mod Location
-
-		text("500 ",80,560); // Constitution Location
-		text("500 ",80,600); // Constitution Mod Location
-
-		text("500 ",80,690); // Intelligence Location
-		text("500 ",80,730); // Intelligence Mod Location
-
-		text("500 ",80,820); // Wisdom Location
-		text("500 ",80,857); // Wisdom Mod Location
-
-		text("500 ",80,945); // Charisma Location
-		text("500 ",80,985); // Charisma Mod Location
-
-		text("500 ",58,1070); // Passive Wisdom Location
-
-		//2nd Left Boxes
-		text("500 ",80,490); // Strength Location
-		text("500 ",80,345); // Strength Mod Location
-
-		text("500 ",80,430); // Dexterity Location
-		text("500 ",80,475); // Dexterity Mod Location
-
-		text("500 ",80,560); // Constitution Location
-		text("500 ",80,600); // Constitution Mod Location
-
-		text("500 ",80,690); // Intelligence Location
-		text("500 ",80,730); // Intelligence Mod Location
-
-		text("500 ",80,820); // Wisdom Location
-		text("500 ",80,857); // Wisdom Mod Location
-
-		text("500 ",80,945); // Charisma Location
-		text("500 ",80,985); // Charisma Mod Location
-
-		text("500 ",58,1070); // Passive Wisdom Location
 	}
 	</script>
 
@@ -546,7 +587,6 @@
 		noLoop();
 		PFont fontA = loadFont("courier");
 		textFont(fontA, 16);
-		writePDF1();
 	}
 	void draw() {
 	}
@@ -555,13 +595,30 @@
 		background(pdf2);
 		fill(0);
 	}
-	void writePDF2()
+	</script>
+	
+	<script type="text/processing" data-processing-target="canvasPDF3">
+	void setup()
 	{
-		text(vCharacter_Name,100,130); //Character Name Location
-		
+		size(1080,1404);
+		/* @pjs preload="Pdf/pdf3.png"; */
+		PImage pdf3;
+		pdf1 = loadImage("Pdf/pdf3.png");
+		background(pdf1);
+		fill(0);
+		noLoop();
+		PFont fontA = loadFont("courier");
+		textFont(fontA, 16);
+	}
+	void draw() {
+	}
+	void clearPDF(){
+		pdf3 = loadImage("Pdf/pdf3.png");
+		background(pdf3);
+		fill(0);
 	}
 	</script>
-	</div>
+	
 	<div id="footer"></div>
 
 </body>
