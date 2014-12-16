@@ -1,29 +1,33 @@
-var vCharacter_Race = "";
-var vCharacter_Sub_Race = "";
-var vCharacter_Class = "";
+var vCharacter_Race = "Human";
+var vCharacter_Sub_Race = "Human";
+var vCharacter_Class = "Fighter";
 var vCharacter_Sub_Class = "";
-var vCharacter_Level = 1;
-var vCharacter_Gender = "";
+var vCharacter_Level = "1";
+var vCharacter_Gender = "Male";
 var vCharacter_Background = "";
-var vCharacter_Alignment = "";
-var vCharacter_Height_ft = "";
-var vCharacter_Height_in = "";
+var vCharacter_Alignment = "Lawful Good";
+var vCharacter_Height_ft = "5";
+var vCharacter_Height_in = "11";
 var vCharacter_Weight = "";
-var vCharacter_XP = "";
-var vCharacter_Name = "";
-var vCharacter_Player_Name = "";
-var vCharacter_Strength = "";
-var vCharacter_Strength_Mod = "";
-var vCharacter_Dexterity = "";
-var vCharacter_Dexterity_Mod = "";
-var vCharacter_Constitution = "";
-var vCharacter_Constitution_Mod = "";
-var vCharacter_Intelligence = "";
-var vCharacter_Intelligence_Mod = "";
-var vCharacter_Wisdom = "";
-var vCharacter_Wisdom_Mod = "";
-var vCharacter_Charisma = "";
-var vCharacter_Charisma_Mod = "";
+var vCharacter_Age = "50";
+var vCharacter_Hair_Color = "Brown";
+var vCharacter_Eye_Color = "Blue";
+var vCharacter_Skin_Color = "White";
+var vCharacter_XP = "500";
+var vCharacter_Name = "John Smith";
+var vCharacter_Player_Name = "Franklin";
+var vCharacter_Strength = "13";
+var vCharacter_Strength_Mod = "+1";
+var vCharacter_Dexterity = "13";
+var vCharacter_Dexterity_Mod = "+1";
+var vCharacter_Constitution = "13";
+var vCharacter_Constitution_Mod = "+1";
+var vCharacter_Intelligence = "13";
+var vCharacter_Intelligence_Mod = "+1";
+var vCharacter_Wisdom = "13";
+var vCharacter_Wisdom_Mod = "+1";
+var vCharacter_Charisma = "13";
+var vCharacter_Charisma_Mod = "+1";
 var vCharacter_Passive_Wisdom = "";
 var vCharacter_Initiative = "";
 var vCharacter_Speed = "";
@@ -145,6 +149,26 @@ var rollWeightValue = 0;
 		vCharacter_Name = Character_Name;
 	}
 	
+	function store_Age(Character_Age){
+		vCharacter_Age = Character_Age;
+	}
+	
+	function store_Hair(Character_Hair){
+		vCharacter_Hair_Color = Character_Hair;
+	}
+	
+	function store_Eyes(Character_Eyes){
+		vCharacter_Eye_Color = Character_Eyes;
+	}
+	
+	function store_Skin(Character_Skin){
+		vCharacter_Skin_Color = Character_Skin;
+	}
+	
+	function store_Alignment(Character_Alignment){
+		vCharacter_Alignment = Character_Alignment;
+	}
+	
 	function rollAbilityScores(){
 		var score1,score2,score3,score4,score5,score6;
 		score1 = sum3highest();
@@ -159,6 +183,113 @@ var rollWeightValue = 0;
 		document.getElementById("score4").value = score4;
 		document.getElementById("score5").value = score5;
 		document.getElementById("score6").value = score6;
+	}
+	
+	function saveAbilityScores(){
+		var abil1 = document.getElementById("ability1").value;
+		var abil2 = document.getElementById("ability2").value;
+		var abil3 = document.getElementById("ability3").value;
+		var abil4 = document.getElementById("ability4").value;
+		var abil5 = document.getElementById("ability5").value;
+		var abil6 = document.getElementById("ability6").value;
+		var isDuplicate = false;
+		//Make sure there are no duplicates
+		if(abil1 == abil2) isDuplicate = true;
+		if(abil1 == abil3) isDuplicate = true;
+		if(abil1 == abil4) isDuplicate = true;
+		if(abil1 == abil5) isDuplicate = true;
+		if(abil1 == abil6) isDuplicate = true;
+		if(abil2 == abil3) isDuplicate = true;
+		if(abil2 == abil4) isDuplicate = true;
+		if(abil2 == abil5) isDuplicate = true;
+		if(abil2 == abil6) isDuplicate = true;
+		if(abil3 == abil4) isDuplicate = true;
+		if(abil3 == abil5) isDuplicate = true;
+		if(abil3 == abil6) isDuplicate = true;
+		if(abil4 == abil5) isDuplicate = true;
+		if(abil4 == abil6) isDuplicate = true;
+		if(abil5 == abil6) isDuplicate = true;
+		if(isDuplicate == true) {
+			document.getElementById("ability_score_chkbox_id").checked = false;
+			window.alert("Duplicate found please check your selections.");
+		}
+		else{
+			document.getElementById("ability_score_chkbox_id").checked = true;
+			parseAbiltiy(abil1,"1");
+			parseAbiltiy(abil2,"2");
+			parseAbiltiy(abil3,"3");
+			parseAbiltiy(abil4,"4");
+			parseAbiltiy(abil5,"5");
+			parseAbiltiy(abil6,"6");	
+		}
+		
+
+		
+		vCharacter_Passive_Wisdom = "";
+		vCharacter_Initiative = "";
+		vCharacter_Speed = "";
+	}
+	
+	function parseAbiltiy(ability_in, abil_num) {
+		var scoreVal = document.getElementById("score" + abil_num).value;
+		var scoreMod = calcAbilityMod(scoreVal)
+		switch(ability_in) {
+			case "Strength":
+				vCharacter_Strength = scoreVal;
+				vCharacter_Strength_Mod = scoreMod;
+				break;
+			case "Dexterity":
+				vCharacter_Dexterity = scoreVal;
+				vCharacter_Dexterity_Mod = scoreMod;
+				break;
+			case "Constitution":
+				vCharacter_Constitution = scoreVal;
+				vCharacter_Constitution_Mod = scoreMod;
+				break;
+			case "Intelligence":
+				vCharacter_Intelligence = scoreVal;
+				vCharacter_Intelligence_Mod = scoreMod;
+				break;
+			case "Wisdom":
+				vCharacter_Wisdom = scoreVal;
+				vCharacter_Wisdom_Mod = scoreMod;
+				break;
+			case "Charisma":
+				vCharacter_Charisma = scoreVal;
+				vCharacter_Charisma_Mod = scoreMod;
+				break;
+		}
+	}
+	
+	function calcAbilityMod(score_in){
+		var ability_mod = -5;
+		if(score_in > 1) ability_mod++;
+		if(score_in > 3) ability_mod++;
+		if(score_in > 5) ability_mod++;
+		if(score_in > 7) ability_mod++;
+		if(score_in > 9) ability_mod++;
+		if(score_in > 11) ability_mod++;
+		if(score_in > 13) ability_mod++;
+		if(score_in > 15) ability_mod++;
+		if(score_in > 17) ability_mod++;
+		if(score_in > 19) ability_mod++;
+		if(score_in > 21) ability_mod++;
+		if(score_in > 23) ability_mod++;
+		if(score_in > 25) ability_mod++;
+		if(score_in > 27) ability_mod++;
+		if(score_in > 29) ability_mod++;
+		if(score_in > 30) ability_mod++;
+		
+		if(ability_mod < 0){
+			ability_mod = "-" + String(ability_mod);
+		}
+		else if(ability_mod == 0){
+			ability_mod = String(ability_mod);
+		}
+		else if(ability_mod > 0){
+			ability_mod = "+" + String(ability_mod);
+		}
+		return ability_mod;
 	}
 	
 	function sum3highest(){
@@ -191,50 +322,50 @@ var rollWeightValue = 0;
 		writeTextPdf1(vCharacter_Player_Name,850,105); //Player Name Location
 
 		writeTextPdf1(vCharacter_Race,475,150); //Race Location
-		writeTextPdf1("Lawful Good ",680,150); //Alignment Location
-		writeTextPdf1("500 ",850,150); //Experience Points Location
+		writeTextPdf1(vCharacter_Alignment,680,150); //Alignment Location
+		writeTextPdf1(vCharacter_XP,850,150); //Experience Points Location
 
 		//1st Left Boxes
-		writeTextPdf1("500 ",80,300); // Strength Location
-		writeTextPdf1("500 ",80,345); // Strength Mod Location
+		writeTextPdf1(vCharacter_Strength,85,300); // Strength Location
+		writeTextPdf1(vCharacter_Strength_Mod,85,345); // Strength Mod Location
 
-		writeTextPdf1("500 ",80,430); // Dexterity Location
-		writeTextPdf1("500 ",80,475); // Dexterity Mod Location
+		writeTextPdf1(vCharacter_Dexterity,85,430); // Dexterity Location
+		writeTextPdf1(vCharacter_Dexterity_Mod,85,475); // Dexterity Mod Location
 
-		writeTextPdf1("500 ",80,560); // Constitution Location
-		writeTextPdf1("500 ",80,600); // Constitution Mod Location
+		writeTextPdf1(vCharacter_Constitution,85,560); // Constitution Location
+		writeTextPdf1(vCharacter_Constitution_Mod,85,600); // Constitution Mod Location
 
-		writeTextPdf1("500 ",80,690); // Intelligence Location
-		writeTextPdf1("500 ",80,730); // Intelligence Mod Location
+		writeTextPdf1(vCharacter_Intelligence,85,690); // Intelligence Location
+		writeTextPdf1(vCharacter_Intelligence_Mod,85,730); // Intelligence Mod Location
 
-		writeTextPdf1("500 ",80,820); // Wisdom Location
-		writeTextPdf1("500 ",80,857); // Wisdom Mod Location
+		writeTextPdf1(vCharacter_Wisdom,85,820); // Wisdom Location
+		writeTextPdf1(vCharacter_Wisdom_Mod,85,857); // Wisdom Mod Location
 
-		writeTextPdf1("500 ",80,945); // Charisma Location
-		writeTextPdf1("500 ",80,985); // Charisma Mod Location
+		writeTextPdf1(vCharacter_Charisma,85,945); // Charisma Location
+		writeTextPdf1(vCharacter_Charisma_Mod,85,985); // Charisma Mod Location
 
 		writeTextPdf1("500 ",58,1070); // Passive Wisdom Location
 
 		//2nd Left Boxes
-		writeTextPdf1("500 ",80,490); // Strength Location
-		writeTextPdf1("500 ",80,345); // Strength Mod Location
+		// writeTextPdf1("500 ",80,490); // Strength Location
+		// writeTextPdf1("500 ",80,345); // Strength Mod Location
 
-		writeTextPdf1("500 ",80,430); // Dexterity Location
-		writeTextPdf1("500 ",80,475); // Dexterity Mod Location
+		// writeTextPdf1("500 ",80,430); // Dexterity Location
+		// writeTextPdf1("500 ",80,475); // Dexterity Mod Location
 
-		writeTextPdf1("500 ",80,560); // Constitution Location
-		writeTextPdf1("500 ",80,600); // Constitution Mod Location
+		// writeTextPdf1("500 ",80,560); // Constitution Location
+		// writeTextPdf1("500 ",80,600); // Constitution Mod Location
 
-		writeTextPdf1("500 ",80,690); // Intelligence Location
-		writeTextPdf1("500 ",80,730); // Intelligence Mod Location
+		// writeTextPdf1("500 ",80,690); // Intelligence Location
+		// writeTextPdf1("500 ",80,730); // Intelligence Mod Location
 
-		writeTextPdf1("500 ",80,820); // Wisdom Location
-		writeTextPdf1("500 ",80,857); // Wisdom Mod Location
+		// writeTextPdf1("500 ",80,820); // Wisdom Location
+		// writeTextPdf1("500 ",80,857); // Wisdom Mod Location
 
-		writeTextPdf1("500 ",80,945); // Charisma Location
-		writeTextPdf1("500 ",80,985); // Charisma Mod Location
+		// writeTextPdf1("500 ",80,945); // Charisma Location
+		// writeTextPdf1("500 ",80,985); // Charisma Mod Location
 
-		writeTextPdf1("500 ",58,1070); // Passive Wisdom Location
+		// writeTextPdf1("500 ",58,1070); // Passive Wisdom Location
 	
 	}
 	
@@ -243,13 +374,13 @@ var rollWeightValue = 0;
 		pdf2Instance.clearPDF();
 		writeTextPdf2(vCharacter_Name,100,130); //Character Name Location
 		//Top right box
-		writeTextPdf2("25",475,105); //Age Location
+		writeTextPdf2(vCharacter_Age,475,105); //Age Location
 		writeTextPdf2(String(vCharacter_Height_ft)+"'"+String(vCharacter_Height_in)+'"',680,105); //Height Location
 		writeTextPdf2(vCharacter_Weight,850,105); //Weight Location
 
-		writeTextPdf2("Blue",475,150); //Eyes Location
-		writeTextPdf2("White ",680,150); //Skin Location
-		writeTextPdf2("Brown ",850,150); //Hair Location
+		writeTextPdf2(vCharacter_Eye_Color,475,150); //Eyes Location
+		writeTextPdf2(vCharacter_Skin_Color,680,150); //Skin Location
+		writeTextPdf2(vCharacter_Hair_Color,850,150); //Hair Location
 	}
 	
 	function writeTextPdf1(TextToWrite,xcoord,ycoord){

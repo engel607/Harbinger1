@@ -451,24 +451,25 @@
 				<th>Hair Color</th>
 			</tr>
 			<tr>
-				<td><input type="number" min="0" max="2000" onchange="" id="char_age_ID"></td>
-				<td><select>
-					  <option value="blue">Blue</option>
-					  <option value="green">Green</option>
-					  <option value="brown">Brown</option>
-					  <option value="hazel">Hazel</option>
+				<td><input type="number" min="0" max="2000" onchange="store_Age(this.value)" id="char_age_ID"></td>
+				<td><select onchange="store_Eyes(this.value)">
+					  <option value="Blue">Blue</option>
+					  <option value="Green">Green</option>
+					  <option value="Brown">Brown</option>
+					  <option value="Hazel">Hazel</option>
 					</select></td>
-				<td> <select>
-					  <option value="white">White</option>
-					  <option value="tan">Tan</option>
-					  <option value="black">Black</option>
+				<td> <select onchange="store_Skin(this.value)">
+					  <option value="White">White</option>
+					  <option value="Tan">Tan</option>
+					  <option value="Black">Black</option>
 					</select></td>
-				<td> <select>
-					  <option value="brown">Brown</option>
-					  <option value="blonde">Blonde</option>
-					  <option value="red">Red</option>
-					  <option value="black">Black</option>
-					  <option value="white">White</option>
+				<td> <select onchange="store_Hair(this.value)">
+					  <option value="Brown">Brown</option>
+					  <option value="Blonde">Blonde</option>
+					  <option value="Red">Red</option>
+					  <option value="Black">Black</option>
+					  <option value="Gray">Gray</option>
+					  <option value="White">White</option>
 					</select></td>
 			</tr>
 		</table>
@@ -477,12 +478,12 @@
 		<input type="button" value="Roll Ability Scores" onclick="rollAbilityScores()">
 		<table>
 			<tr>
-				<td><input type="text" id="score1"></td>
-				<td><input type="text" id="score2"></td>
-				<td><input type="text" id="score3"></td>
+				<td><input type="text" id="score1" disabled></td>
+				<td><input type="text" id="score2" disabled></td>
+				<td><input type="text" id="score3" disabled></td>
 			</tr>
 			<tr>
-				<td><select>
+				<td><select id="ability1">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -490,7 +491,7 @@
 					<option value="Wisdom">Wisdom</option>
 					<option value="Charisma">Charisma</option>
 				</select></td>
-				<td><select>
+				<td><select id="ability2">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -498,7 +499,7 @@
 					<option value="Wisdom">Wisdom</option>
 					<option value="Charisma">Charisma</option>
 				</select></td>
-				<td><select>
+				<td><select id="ability3">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -508,12 +509,12 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><input type="text" id="score4"></td>
-				<td><input type="text" id="score5"></td>
-				<td><input type="text" id="score6"></td>
+				<td><input type="text" id="score4" disabled></td>
+				<td><input type="text" id="score5" disabled></td>
+				<td><input type="text" id="score6" disabled></td>
 			</tr>
 			<tr>
-				<td><select>
+				<td><select id="ability4">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -521,7 +522,7 @@
 					<option value="Wisdom">Wisdom</option>
 					<option value="Charisma">Charisma</option>
 				</select></td>
-				<td><select>
+				<td><select id="ability5">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -529,7 +530,7 @@
 					<option value="Wisdom">Wisdom</option>
 					<option value="Charisma">Charisma</option>
 				</select></td>
-				<td><select>
+				<td><select id="ability6">
 					<option value="Strength">Strength</option>
 					<option value="Dexterity">Dexterity</option>
 					<option value="Constitution">Constitution</option>
@@ -539,8 +540,46 @@
 				</select></td>
 			</tr>
 		</table>
-
-		<input type="button" value="Generate PDF" onclick="saveFile()">
+		<br>
+		<input type="button" value="Accept Ability Scores" onclick="saveAbilityScores()"><br>
+		<input type="checkbox" disabled id="ability_score_chkbox_id">Ability Scores Accepted?<br>
+		
+		<table>
+			<tr>
+			<th></th>
+			<th>Alignment</th>
+			<th></th>
+			</tr>
+			<tr>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Lawful Good"> Lawful Good </td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Neutral Good"> Neutral Good</td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Chaotic Good"> Chaotic Good</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Lawful Neutral"> Lawful Neutral</td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Neutral"> Neutral</td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Chaotic Neutral"> Chaotic Neutral</td>
+			</tr>
+			<tr>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Lawful Evil"> Lawful Evil</td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Neutral Evil"> Neutral Evil</td>
+				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Chaotic Evil"> Chaotic Evil</td>
+			</tr>
+		</table><br>
+		
+		<table>
+			<tr>
+				<th>Racial Bonuses</th>
+				<th>Class Bonuses</th>
+				<th>Other Bonuses</th>
+			</tr>
+			<tr>
+				<td><textarea id="Racial_Bonus" rows="10"> </textarea></td>
+				<td><textarea id="Class_Bonus" rows="10"> </textarea></td>
+				<td><textarea id="Other_Bonus" rows="10"> </textarea></td>
+			</tr>
+		</table>
+		<br><input type="button" value="Generate PDF" onclick="saveFile()"><br>
 </form>
 </div>
 	<div id=canvas1>
