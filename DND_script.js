@@ -33,7 +33,33 @@ var vCharacter_Initiative = "";
 var vCharacter_Speed = "";
 var rollHeightValue = 0;
 var rollWeightValue = 0;
+var racialBonusApplied = false;
 
+var currentScreen = 1;
+
+	function navBack(){
+		currentScreen--;
+		navVisibility();
+	}
+
+	function navForward(){
+		currentScreen++;
+		navVisibility();
+	}
+
+	function navVisibility(){
+		document.getElementById("section_1").hidden = true;
+		document.getElementById("section_2").hidden = true;
+		document.getElementById("section_3").hidden = true;
+		document.getElementById("section_4").hidden = true;
+		document.getElementById("section_5").hidden = true;
+		document.getElementById("section_6").hidden = true;
+		document.getElementById("section_7").hidden = true;
+		document.getElementById("section_8").hidden = true;
+		var newScreen = "section_" + String(currentScreen);
+		document.getElementById(newScreen).hidden = false;
+	}
+	
 	function detailed_Race(Character_Race){
 		document.getElementById("sr_dwarf").hidden = true;
 		document.getElementById("sr_elf").hidden = true;
@@ -305,7 +331,86 @@ var rollWeightValue = 0;
 	return Math.max(high1,high2,high3,high4);
 	}
 	
-	
+	function racialBonus(){
+		switch(vCharacter_Sub_Race) {
+			case Hill_Dwarf:
+				//Constitution +2
+				vCharacter_Constitution = vCharacter_Constitution + 2;
+				//Wisdom +1
+				vCharacter_Wisdom =  vCharacter_Wisdom  + 1;
+				//HP + 1
+				break;
+			case Mountain_Dwarf:
+				//Constitution +2
+				vCharacter_Constitution = vCharacter_Constitution +2;
+				//Strength + 2
+				vCharacter_Strength = vCharacter_Strength + 2;
+				break;
+			case High_Elf:
+				//Dexterity +2
+				vCharacter_Dexterity = vCharacter_Dexterity + 2;
+				//Intelligence +1
+				vCharacter_Intelligence = vCharacter_Intelligence +1;
+				break;
+			case Wood_Elf:
+				//Dexterity +2
+				vCharacter_Dexterity = vCharacter_Dexterity + 2;
+				//Wisdom +1
+				vCharacter_Wisdom = vCharacter_Wisdom + 1;
+				break;
+			case Dark_Elf:
+				//Dexterity +2
+				vCharacter_Dexterity = vCharacter_Dexterity + 2;
+				//Charisma +1
+				vCharacter_Charisma = vCharacter_Charisma + 1;
+				break;
+			case Lightfoot_Halfling:
+				//Dexterity +2
+				vCharacter_Dexterity = vCharacter_Dexterity + 2;
+				//Charisma  +1
+				vCharacter_Charisma = vCharacter_Charisma + 1;
+				break;
+			case Stout_Halfling:
+				//Dexterity +2
+				vCharacter_Dexterity = vCharacter_Dexterity +2;
+				//Constitution +1
+				vCharacter_Constitution = vCharacter_Constitution + 1;
+				break;
+			case Human:
+				//All Ability Scores +1
+				break;
+			case Dragonborn:
+				//Strength +2
+				vCharacter_Strength = vCharacter_Strength + 2;
+				//Charisma +1
+				vCharacter_Charisma = vCharacter_Charisma + 1;
+				break;
+			case Forest_Gnome:
+				//Intelligence +2
+				vCharacter_Intelligence + vCharacter_Intelligence + 2;
+				//Dexterity +1
+				vCharacter_Dexterity = vCharacter_Dexterity + 1;
+				break;
+			case Rock_Gnome:
+				//Intelligence +2
+				vCharacter_Intelligence = vCharacter_Intelligence + 2;
+				//Constitution +1
+				vCharacter_Constitution = vCharacter_Constitution + 1;
+				break;
+			case Halfelf:
+				//Charisma +2
+				vCharacter_Charisma = vCharacter_Charisma + 2;
+				//Two other abilities +2
+				break;
+			case Tiefling:
+				//Intelligence +1
+				vCharacter_Intelligence = vCharacter_Intelligence + 1;
+				//Charisma +2
+				vCharacter_Charisma = vCharacter_Charisma + 2;
+				break;
+
+		}
+	}
 	
 	function saveFile(){
 		genPDF1();

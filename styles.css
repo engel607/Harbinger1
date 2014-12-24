@@ -144,6 +144,14 @@ input[type=radio]:checked{
     padding:10px;
 }
 /*End Section*/
+#creator_nav {
+	width:20%;
+	text-align: center;
+   margin-left: auto;
+	margin-right: auto;
+    padding:10px;
+}
+
 /*Start Section */
 #section_char_creator {
 	text-align: center;
