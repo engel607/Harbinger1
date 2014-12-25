@@ -10,18 +10,19 @@ h1 {
 
 h2 {
 	color: black;
+	font-size: 22px;
 	text-align: center;
 }
 
 h3 {
 	color: black;
-	font-size: 30px;
+	font-size: 20px;
 	text-align: center;
 }
 
 p {
     font-family: "Times New Roman";
-    font-size: 24px;
+    font-size: 18px;
 	margin: 0 auto;
 	text-align: center;
 	width: 50%;
@@ -36,27 +37,27 @@ form {
 }
 
 input[type=text]{
-	font-size: 24px;
+	font-size: 18px;
 	text-align: center;
 	width: 50%
 }
 input[type=button]{
-	font-size: 22px;
+	font-size: 16px;
 	text-align: center;
 }
 input[type=number] {
-	font-size: 24px;
+	font-size: 18px;
 	text-align: center;
 	width: 20%
 }
 select {
-	font-size: 22px;
+	font-size: 18px;
 	text-align: center;
 }
 
 
 #level_ID {
-	width: 70%
+	width: 40%
 }
 #char_age_ID {
 	width: 70%
@@ -67,7 +68,7 @@ table, th, td {
 	border: 1px solid black;
 	
 	margin: 0 auto;
-	font-size: 24px;
+	font-size: 18px;
 	text-align: center;
 }
 table {
@@ -121,6 +122,7 @@ input[type=radio]:checked{
 
 /*Start Left Nav */
 #left_nav {
+	font-size: 12px;
     background-color:#eeeeee;
     width:10%;
     float:left;
@@ -130,6 +132,7 @@ input[type=radio]:checked{
 
 /*Start Right Nav */
 #right_nav {
+	font-size: 12px;
     background-color:#eeeeee;
     width:10%;
     float:right;
@@ -145,7 +148,7 @@ input[type=radio]:checked{
 }
 /*End Section*/
 #creator_nav {
-	width:20%;
+	width:25%;
 	text-align: center;
    margin-left: auto;
 	margin-right: auto;
@@ -158,6 +161,7 @@ input[type=radio]:checked{
 	margin-left: auto;
 	margin-right: auto;
     width: 50%;
+	padding:10px;
 }
 /*End Section*/
 

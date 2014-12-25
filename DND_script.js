@@ -36,26 +36,32 @@ var rollWeightValue = 0;
 var racialBonusApplied = false;
 
 var currentScreen = 1;
-
+var lastScreen = 8;
 	function navBack(){
-		currentScreen--;
-		navVisibility();
+		if(currentScreen != 1){
+			currentScreen--;
+			navVisibility();
+			document.getElementById("nav_selector").selectedIndex = currentScreen - 1;
+		}
 	}
 
-	function navForward(){
-		currentScreen++;
+	function navSelect(){
+		currentScreen = document.getElementById("nav_selector").selectedIndex + 1;
 		navVisibility();
+	}
+	
+	function navForward(){
+		if(currentScreen != lastScreen){
+			currentScreen++;
+			navVisibility();
+			document.getElementById("nav_selector").selectedIndex = currentScreen - 1;
+			}
 	}
 
 	function navVisibility(){
-		document.getElementById("section_1").hidden = true;
-		document.getElementById("section_2").hidden = true;
-		document.getElementById("section_3").hidden = true;
-		document.getElementById("section_4").hidden = true;
-		document.getElementById("section_5").hidden = true;
-		document.getElementById("section_6").hidden = true;
-		document.getElementById("section_7").hidden = true;
-		document.getElementById("section_8").hidden = true;
+		for(i=1;i<9;i++){
+			document.getElementById("section_" + String(i)).hidden = true;
+		}
 		var newScreen = "section_" + String(currentScreen);
 		document.getElementById(newScreen).hidden = false;
 	}
@@ -156,6 +162,28 @@ var currentScreen = 1;
 	
 	function store_Subrace(Character_Subrace){
 		vCharacter_Sub_Race = Character_Subrace;
+		document.getElementById("rb_default").hidden = true;
+		document.getElementById("rb_highelf").hidden = true;
+		document.getElementById("rb_human").hidden = true;
+		document.getElementById("rb_dragonborn").hidden = true;
+		document.getElementById("rb_halfelf").hidden = true
+		switch(String(vCharacter_Sub_Race)) {
+			case "High_Elf":
+				document.getElementById("rb_highelf").hidden = false;
+				break;
+			case "Human":
+				document.getElementById("rb_human").hidden = false;
+				break;
+			case "Dragonborn":
+				document.getElementById("rb_dragonborn").hidden = false;
+				break;
+			case "Halfelf":
+				document.getElementById("rb_halfelf").hidden = false;
+				break;
+			default:
+				document.getElementById("rb_default").hidden = false;
+				break;		
+		}
 	}
 	
 	function store_Subclass(Character_Subclass){
@@ -413,6 +441,7 @@ var currentScreen = 1;
 	}
 	
 	function saveFile(){
+		document.getElementById("pdfPages").hidden = false;
 		genPDF1();
 		genPDF2();
 	}
@@ -505,59 +534,59 @@ var currentScreen = 1;
 			case "Hill_Dwarf":
 				vCharacter_Height_ft = 3;
 				vCharacter_Height_in = 8;
-				rollHeightValue = rollD4();
+				rollHeightValue = rollD4() + rollD4();
 				break;
 			case "Mountain_Dwarf":
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 0;
-				rollHeightValue = rollD4();
+				rollHeightValue = rollD4() + rollD4();
 				break;
 			case "Lightfoot_Halfling":
 			case "Stout_Halfling":
 				vCharacter_Height_ft = 2;
 				vCharacter_Height_in = 7;
-				rollHeightValue = rollD4();
+				rollHeightValue = rollD4() + rollD4();
 				break;
 			case "Forest_Gnome":
 			case "Rock_Gnome":
 				vCharacter_Height_ft = 2;
 				vCharacter_Height_in = 11;
-				rollHeightValue = rollD4();
+				rollHeightValue = rollD4() + rollD4();
 				break;
 			
 			case "Dark_Elf":
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 5;
-				rollHeightValue = rollD6();
+				rollHeightValue = rollD6() + rollD6();
 				break;
 			
 			case "Dragonborn":
 				vCharacter_Height_ft = 5;
 				vCharacter_Height_in = 6;
-				rollHeightValue = rollD8();
+				rollHeightValue = rollD8() + rollD8();
 				break;
 			case "Halfelf":
 			case "Tiefling":
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 9;
-				rollHeightValue = rollD8();
+				rollHeightValue = rollD8() + rollD8();
 				break;
 			
 			case "Human":
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 8;
-				rollHeightValue = rollD10();
+				rollHeightValue = rollD10() + rollD10();
 				break;
 			case "High_Elf":
 			case "Wood_Elf":
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 6;
-				rollHeightValue = rollD10();
+				rollHeightValue = rollD10() + rollD10();
 				break;
 			default:
 				vCharacter_Height_ft = 4;
 				vCharacter_Height_in = 8;
-				rollHeightValue = rollD10();
+				rollHeightValue = rollD10() + rollD10();
 				break;
 		}
 		if(rollHeightValue >=12) {
@@ -582,13 +611,11 @@ var currentScreen = 1;
 		switch(vCharacter_Sub_Race) {
 			case "Hill_Dwarf":
 				vCharacter_Weight = 115;
-				rollWeightValue = rollD6();
-				rollWeightValue = rollWeightValue + rollD6();
+				rollWeightValue = rollD6() + rollD6();
 				break;
 			case "Mountain_Dwarf":
 				vCharacter_Weight = 130;
-				rollWeightValue = rollD6();
-				rollWeightValue = rollWeightValue + rollD6();
+				rollWeightValue = rollD6() + rollD6();
 				break;
 			case "Lightfoot_Halfling":
 			case "Stout_Halfling":
@@ -604,15 +631,13 @@ var currentScreen = 1;
 			
 			case "Dragonborn":
 				vCharacter_Weight = 175;
-				rollWeightValue = rollD6();
-				rollWeightValue = rollWeightValue + rollD6();
+				rollWeightValue = rollD6() + rollD6();
 				break;
 			case "Halfelf":
 			case "Tiefling":
 			case "Human":
 				vCharacter_Weight = 110;
-				rollWeightValue = rollD4();
-				rollWeightValue = rollWeightValue + rollD4();
+				rollWeightValue = rollD4() + rollD4();
 				break;
 			case "High_Elf":
 				vCharacter_Weight = 90;

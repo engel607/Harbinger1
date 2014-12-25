@@ -10,9 +10,9 @@
 <body id="html_char_creator">
 	<div id="left_nav">
 		<h1> Navigation</h1>
-		<iframe src="Navigation/Left_Nav.html" width=100% height=800></iframe>
+		<iframe src="Navigation/Left_Nav.html" frameborder="0" width=100% height=800></iframe>
 	</div>
-	<div id="right_nav" hidden>
+	<div id="right_nav">
 		<h1> Current Configuration</h1>
 		<iframe src="Navigation/Right_Nav.html" width=100% height=800></iframe>
 	</div>
@@ -21,6 +21,16 @@
 	<div id="creator_nav">
 		
 		<input type="button" value="Go Back" onclick="navBack()">
+		<select id="nav_selector" onchange="navSelect()">
+					<option>General</option>
+					<option>Race</option>
+					<option>Racial Bonuses</option>
+					<option>Class</option>
+					<option>Ability Score</option>
+					<option>Alignment</option>
+					<option>Bonuses</option>
+					<option>Generate</option>
+				</select>
 		<input type="button" value="Next" onclick="navForward()">
 	</div>
 	<div id="section_char_creator">
@@ -29,33 +39,23 @@
 	<form>
 		<table id="charNameLvl">
 			<tr>
-				<th> Player Name </th>
-				<th> Character Name </th>
-				<th>Level</th>
+				<th colspan="2"> Player Name </th><td colspan="2"><input type="text" id="Player_Name_ID" onchange="store_PName(this.value)"></td>
 			</tr>
 			<tr>
-				<td><input type="text" id="Player_Name_ID" onchange="store_PName(this.value)"></td>
-				<td><input type="text" id="Character_Name_ID" onchange="store_CName(this.value)"></td>
-				<td> <input type="number"  id="level_ID"  onchange="store_Level(this.value)" name="level" min="1" max="50" value="1"></td>
-				<td>
+				<th colspan="2"> Character Name </th><td colspan="2"><input type="text" id="Character_Name_ID" onchange="store_CName(this.value)"></td>
 			</tr>
 			<tr>
-				<table id="charNameLvl">
-				<tr>
-					<th>Male</th>
-					<th>Female</th>
-					<th>No Gender</th>
-					<th>Other Gender</th>
-				</tr>
-				<tr>
-					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Male" checked></td>
-					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Female" ></td>
-					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="No_Gender" ></td>
-					<td><input type="radio" id="Character_Gender_ID" name="Character_Gender" value="Other" > </td>
-				</tr>
-				
-			</table></td>
-				</tr>
+				<th colspan="2">Level</th><td colspan="2"> <input type="number"  id="level_ID"  onchange="store_Level(this.value)" name="level" min="1" max="50" value="1"></td>
+			</tr>
+			<tr>
+			<th colspan="2">Gender</th>
+				<td colspan="2"><select id="Character_Gender_ID" >
+					<option value="Male" >Male</option>
+					<option value="Female">Female</option>
+					<option value="No_Gender">No Gender</option>
+					<option value="Other">Other</option>
+				</select></td>
+			</tr>
 		</table>
 	</form>
 	</div>
@@ -243,8 +243,43 @@
 		</table>
 	</div>
 		
-
 	<div id="section_3" hidden="true">
+	<h2>Racial Bonuses</h2>
+		<div id="rb_default">
+			<p>No additional choices to make.</p>
+		</div>
+		<div id="rb_highelf" hidden>
+			<p>TODO cantrip choice</p>
+			<p>TODO extra language</p>
+		</div>
+		<div id="rb_human" hidden>
+			<p>TODO extra language</p>
+		</div>
+		<div id="rb_dragonborn" hidden>
+			<p><b>Draconic Ancestry</b></p>
+			<table>
+			<tr><th colspan="2">Dragon</th><th>Damage Type</th><th>Breath Weapon</th></tr>
+			<tr><td>Black</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Black"></td><td>Acid</td><td>5 by 30 ft line(Dex Save)</td></tr>
+			<tr><td>Blue</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Blue"></td><td>Lightning</td><td>5 by 30 ft line(Dex Save)</td></tr>
+			<tr><td>Brass</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Brass"></td><td>Fire</td><td>5 by 30 ft line(Dex Save)</td></tr>
+			<tr><td>Bronze</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Bronze"></td><td>Lightning</td><td>5 by 30 ft line(Dex Save)</td></tr>
+			<tr><td>Copper</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Copper"></td><td>Acid</td><td>5 by 30 ft line(Dex Save)</td></tr>
+			<tr><td>Gold</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Gold"></td><td>Fire</td><td>15 ft cone(Dex Save)</td></tr>
+			<tr><td>Green</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Green"></td><td>Poison</td><td>15 ft cone(Con Save)</td></tr>
+			<tr><td>Red</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Red"></td><td>Fire</td><td>15 ft cone(Dex Save)</td></tr>
+			<tr><td>Silver</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="Silver"></td><td>Cold</td><td>15 ft cone(Con Save)</td></tr>
+			<tr><td>White</td><td><input type="radio" name="Draconic_Ancestry" id="Draconic_Ancestry_ID" value="White"></td><td>Cold</td><td>15 ft cone(Con Save)</td></tr>
+			</table>
+		</div>
+		<div id="rb_halfelf" hidden>
+			<p>TODO Two abilities to increase</p>
+			<p>TODO Two Proficiencies</p>
+			<p>TODO extra language</p>
+		</div>
+	</div>
+		
+		
+	<div id="section_4" hidden="true">
 	<h2>Class</h2>
 		<table>
 			<tr>
@@ -483,7 +518,7 @@
 		</div>
 	</div>
 		
-	<div id="section_4" hidden="true">
+	<div id="section_5" hidden="true">
 		<h2>Ability Scores</h2>
 		<input type="button" value="Roll Ability Scores" onclick="rollAbilityScores()">
 		<table>
@@ -555,7 +590,7 @@
 		<input type="checkbox" disabled id="ability_score_chkbox_id">Ability Scores Accepted?<br>
 		</div>
 	
-		<div id="section_5" hidden="true">
+		<div id="section_6" hidden="true">
 		<table>
 			<tr>
 			<th></th>
@@ -580,7 +615,7 @@
 		</table><br>
 		</div>
 		
-		<div id="section_6" hidden="true">
+		<div id="section_7" hidden="true">
 		<table>
 			<tr>
 				<th>Racial Bonuses</th>
@@ -595,7 +630,7 @@
 		</table>
 		</div>
 		
-		<div id="section_7" hidden="true">
+		<div id="section_8" hidden="true">
 		<text>Document Options</text><br>
 		<br><input type="button" value="Generate PDF" onclick="saveFile()"><br>
 		<br><input type="button" value="Print " onclick="saveFile()"><br>
@@ -603,14 +638,16 @@
 		</div>
 </form>
 </div>
-	<div id=canvas1>
+	<div id="pdfPages" hidden="true">
+	<div id="canvas1">
 	<canvas id="mycanvas"></canvas>
 	</div>
-	<div id=canvas1>
+	<div id="canvas1">
 	<canvas id="canvasPDF2"></canvas>
 	</div>
-	<div id=canvas1>
+	<div id="canvas1">
 	<canvas id="canvasPDF3"></canvas>
+	</div>
 	</div>
 
 	<script type="text/processing" data-processing-target="mycanvas">
