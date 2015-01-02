@@ -8,16 +8,20 @@
 </head>
 
 <body id="html_char_creator">
-	<div id="left_nav">
+	<!-- <div id="left_nav">
 		<h1> Navigation</h1>
 		<iframe src="Navigation/Left_Nav.html" frameborder="0" width=100% height=800></iframe>
-	</div>
-	<div id="right_nav">
+	</div> -->
+	<!-- <div id="right_nav">
 		<h1> Current Configuration</h1>
 		<iframe src="Navigation/Right_Nav.html" width=100% height=800></iframe>
-	</div>
+	</div> -->
+	<div id="header">
 	<h1>Dungeons and Dragons 5th Edition Character Creator</h1>
-		<hr>
+	</div>
+		
+		
+	<!-- Top Navigation Bar Start -->
 	<div id="creator_nav">
 		
 		<input type="button" value="Go Back" onclick="navBack()">
@@ -28,28 +32,67 @@
 					<option>Class</option>
 					<option>Ability Score</option>
 					<option>Alignment</option>
-					<option>Bonuses</option>
+					<option>Review Character</option>
 					<option>Generate</option>
 				</select>
 		<input type="button" value="Next" onclick="navForward()">
 	</div>
+	<!-- End Top Nav bar -->
+	
+	
+	<!-- Creation Box -->
 	<div id="section_char_creator">
+	<!-- Start Info block -->
+	<div id="section_char_creator_info">
+	<h2>Dummy Text</h2>
+	<div id="section_i1">
+	Todo: Information about character creator here
+	</div>
+	<div id="section_i2" hidden="true">
+	Todo: Basic Race and Specific SubRace Info here. Two IFrames
+	</div>
+	<div id="section_i3" hidden="true">
+	Todo: Maybe just a picture here?
+	</div>
+	<div id="section_i4" hidden="true">
+	Todo: Basic Class Info and Specific Class Info here. Two IFrames
+	</div>
+	<div id="section_i5" hidden="true">
+	Todo: Display suggestions for scores based on class
+	</div>
+	<div id="section_i6" hidden="true">
+	Todo: Information on each of the alignments
+	</div>
+	<div id="section_i7" hidden="true">
+	Todo: Add portrait selector
+	</div>
+	<div id="section_i8" hidden="true">
+	Document Generation Options Go here
+	</div>
+	
+	</div> 
+	<!-- End Info block -->
+	
+	<!-- Start Char Creator -->
+	<form>
+	<div id="section_char_creator_generator">
 	<div id="section_1">
 	
-	<form>
+	
+	<h2>Name</h2>
 		<table id="charNameLvl">
 			<tr>
-				<th colspan="2"> Player Name </th><td colspan="2"><input type="text" id="Player_Name_ID" onchange="store_PName(this.value)"></td>
+				<th colspan="2"> Player Name </th><td colspan="2"><input type="text" id="Player_Name_ID" onchange="store_Data(this.value, 'Player_Name')"></td>
 			</tr>
 			<tr>
-				<th colspan="2"> Character Name </th><td colspan="2"><input type="text" id="Character_Name_ID" onchange="store_CName(this.value)"></td>
+				<th colspan="2"> Character Name </th><td colspan="2"><input type="text" id="Character_Name_ID" onchange="store_Data(this.value, 'Character_Name')"></td>
 			</tr>
 			<tr>
-				<th colspan="2">Level</th><td colspan="2"> <input type="number"  id="level_ID"  onchange="store_Level(this.value)" name="level" min="1" max="50" value="1"></td>
+				<th colspan="2">Level</th><td colspan="2"> <input type="number"  id="level_ID"  onchange="store_Data(this.value, 'Level')" name="level" min="1" max="20" value="1"></td>
 			</tr>
 			<tr>
 			<th colspan="2">Gender</th>
-				<td colspan="2"><select id="Character_Gender_ID" >
+				<td colspan="2"><select id="Character_Gender_ID" onchange="store_Data(this.value, 'Gender')">
 					<option value="Male" >Male</option>
 					<option value="Female">Female</option>
 					<option value="No_Gender">No Gender</option>
@@ -57,8 +100,9 @@
 				</select></td>
 			</tr>
 		</table>
-	</form>
 	</div>
+	
+	
 	<div id="section_2" hidden="true">
 
 	<h2> Race </h2>
@@ -200,12 +244,12 @@
 			<tr>
 				<td>
 					<input type="button" value="Roll" onclick="rollHeight()">
-					<input type="number" min="2" max="12" onchange="" id="char_Height_ft">ft
-					<input type="number" min="0" max="11" onchange="" id="char_Height_in">in
+					<input type="number" min="2" max="12" onchange="store_Data(this.value, 'Height_ft')" id="char_Height_ft">ft
+					<input type="number" min="0" max="11" onchange="store_Data(this.value, 'Height_in')" id="char_Height_in">in
 				</td>
 				<td>
 					<input type="button" value="Roll" onclick="rollWeight()">
-					<input type="number" id="char_Weight">lbs
+					<input type="number" min="20" max="1000" onchange="store_Data(this.value, 'Weight')" id="char_Weight">lbs
 				</td>
 			</tr>
 		</table>
@@ -248,12 +292,108 @@
 		<div id="rb_default">
 			<p>No additional choices to make.</p>
 		</div>
+		<div id="rb_dwarf">
+			<p>Dwarves have a tool proficiency, please select one from the list.</p>
+			<select onchange="store_race_bonus(this.value, 'tool')">
+					  <option value="Smith">Smith's Tools</option>
+					  <option value="Brewer">Brewer's Supplies</option>
+					  <option value="Mason">Mason's Tools</option>
+			</select>
+		</div>
 		<div id="rb_highelf" hidden>
-			<p>TODO cantrip choice</p>
-			<p>TODO extra language</p>
+			<p> Please select a cantrip from the wizard spell list and also an additional language.
+			<table>
+			<tr>
+				<th>Cantrip(Wizard)</th>
+				<td>
+				<!-- wizard cantrips -->
+					<select onchange="store_race_bonus(this.value, 'cantrip')">
+					  <option value="Acid_Splash">Acid Splash</option>
+					  <option value="Blade_Ward">Blade Ward</option>
+					  <option value="Chill_Touch">Chill Touch</option>
+					  <option value="Dancing_Lights">Dancing Lights</option>
+					  <option value="Fire_Bolt">Fire Bolt</option>
+					  <option value="Friends">Friends</option>
+					  <option value="Light">Light</option>
+					  <option value="Mage_Hand">Mage Hand</option>
+					  <option value="Mending">Mending</option>
+					  <option value="Message">Message</option>
+					  <option value="Minor_Illusion">Minor Illusion</option>
+					  <option value="Poison_Spray">Poison Spray</option>
+					  <option value="Prestidigitation">Prestidigitation</option>
+					  <option value="Ray_Of_Frost">Ray Of Frost</option>
+					  <option value="Shocking_Grasp">Shocking Grasp</option>
+					  <option value="True_Strike">True Strike</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<th>Extra Language</th>
+				<td>
+				<!-- Languages -->
+					<select onchange="store_race_bonus(this.value, 'language')">
+						<option value="Other">Leave Blank</option>
+						<option value="Abyssal">Abyssal</option>
+						<option value="Aquan">Aquan</option>
+						<option value="Auran">Auran</option>
+						<option value="Bullywug">Bullywug</option>
+						<option value="Celestial">Celestial</option>
+						<option value="Dark_Elf_Silent">Dark Elf Silent</option>
+						<option value="Deep_Speech">Deep Speech</option>
+						<option value="Draconic">Draconic</option>
+						<option value="Giant">Giant</option>
+						<option value="Gith">Gith</option>
+						<option value="Gnoll">Gnoll</option>
+						<option value="Gnomish">Gnomish</option>
+						<option value="Goblin">Goblin</option>
+						<option value="Halfling">Halfling</option>
+						<option value="Ignan">Ignan</option>
+						<option value="Infernal">Infernal</option>
+						<option value="Orc">Orc</option>
+						<option value="Primordial">Primordial</option>
+						<option value="Slaad">Slaad</option>
+						<option value="Sylvan">Sylvan</option>
+						<option value="Terran">Terran</option>
+						<option value="Thieves_Cant">Thieves' Cant</option>
+						<option value="Thri-Kreen">Thri-Kreen</option>
+						<option value="Troglodyte">Troglodyte</option>
+						<option value="Undercommon">Undercommon</option>
+					</select>
+				</td>
+			</tr>
+			</table>
 		</div>
 		<div id="rb_human" hidden>
-			<p>TODO extra language</p>
+			<p>As a human you know an extra language.</p>
+			<select onchange="store_race_bonus(this.value, 'language')">
+						<option value="Other">Leave Blank</option>
+						<option value="Abyssal">Abyssal</option>
+						<option value="Aquan">Aquan</option>
+						<option value="Auran">Auran</option>
+						<option value="Bullywug">Bullywug</option>
+						<option value="Celestial">Celestial</option>
+						<option value="Dark_Elf_Silent">Dark Elf Silent</option>
+						<option value="Deep_Speech">Deep Speech</option>
+						<option value="Draconic">Draconic</option>
+						<option value="Elvish">Elvish</option>
+						<option value="Giant">Giant</option>
+						<option value="Gith">Gith</option>
+						<option value="Gnoll">Gnoll</option>
+						<option value="Gnomish">Gnomish</option>
+						<option value="Goblin">Goblin</option>
+						<option value="Halfling">Halfling</option>
+						<option value="Ignan">Ignan</option>
+						<option value="Infernal">Infernal</option>
+						<option value="Orc">Orc</option>
+						<option value="Primordial">Primordial</option>
+						<option value="Slaad">Slaad</option>
+						<option value="Sylvan">Sylvan</option>
+						<option value="Terran">Terran</option>
+						<option value="Thieves_Cant">Thieves' Cant</option>
+						<option value="Thri-Kreen">Thri-Kreen</option>
+						<option value="Troglodyte">Troglodyte</option>
+						<option value="Undercommon">Undercommon</option>
+					</select>
 		</div>
 		<div id="rb_dragonborn" hidden>
 			<p><b>Draconic Ancestry</b></p>
@@ -275,6 +415,91 @@
 			<p>TODO Two abilities to increase</p>
 			<p>TODO Two Proficiencies</p>
 			<p>TODO extra language</p>
+			<select onchange="store_race_bonus(this.value, 'ability')">
+				<option value="Strength">Strength</option>
+				<option value="Dexterity">Dexterity</option>
+				<option value="Constitution">Constitution</option>
+				<option value="Intelligence">Intelligence</option>
+				<option value="Wisdom">Wisdom</option>
+				<option value="Charisma">Charisma</option>
+			</select>
+			<select onchange="store_race_bonus(this.value, 'ability')">
+				<option value="Strength">Strength</option>
+				<option value="Dexterity">Dexterity</option>
+				<option value="Constitution">Constitution</option>
+				<option value="Intelligence">Intelligence</option>
+				<option value="Wisdom">Wisdom</option>
+				<option value="Charisma">Charisma</option>
+			</select><br>
+			<select onchange="store_race_bonus(this.value, 'skill')">
+				<option value="Athletics">Athletics</option>
+				<option value="Acrobatics">Acrobatics</option>
+				<option value="Sleight_Of_Hand">Sleight of Hand</option>
+				<option value="Stealth">Stealth</option>
+				<option value="Arcana">Arcana</option>
+				<option value="History">History</option>
+				<option value="Investigation">Investigation</option>
+				<option value="Nature">Nature</option>
+				<option value="Religion">Religion</option>
+				<option value="Animal_Handling">Animal Handling</option>
+				<option value="Insight">Insight</option>
+				<option value="Medicine">Medicine</option>
+				<option value="Perception">Perception</option>
+				<option value="Survival">Survival</option>
+				<option value="Deception">Deception</option>
+				<option value="Intimidation">Intimidation</option>
+				<option value="Performance">Performance</option>
+				<option value="Persuasion">Persuasion</option>
+			</select>
+			<select onchange="store_race_bonus(this.value, 'skill')">
+				<option value="Athletics">Athletics</option>
+				<option value="Acrobatics">Acrobatics</option>
+				<option value="Sleight_Of_Hand">Sleight of Hand</option>
+				<option value="Stealth">Stealth</option>
+				<option value="Arcana">Arcana</option>
+				<option value="History">History</option>
+				<option value="Investigation">Investigation</option>
+				<option value="Nature">Nature</option>
+				<option value="Religion">Religion</option>
+				<option value="Animal_Handling">Animal Handling</option>
+				<option value="Insight">Insight</option>
+				<option value="Medicine">Medicine</option>
+				<option value="Perception">Perception</option>
+				<option value="Survival">Survival</option>
+				<option value="Deception">Deception</option>
+				<option value="Intimidation">Intimidation</option>
+				<option value="Performance">Performance</option>
+				<option value="Persuasion">Persuasion</option>
+			</select><br>
+			<select onchange="store_race_bonus(this.value, 'language')">
+						<option value="Other">Leave Blank</option>
+						<option value="Abyssal">Abyssal</option>
+						<option value="Aquan">Aquan</option>
+						<option value="Auran">Auran</option>
+						<option value="Bullywug">Bullywug</option>
+						<option value="Celestial">Celestial</option>
+						<option value="Dark_Elf_Silent">Dark Elf Silent</option>
+						<option value="Deep_Speech">Deep Speech</option>
+						<option value="Draconic">Draconic</option>
+						<option value="Elvish">Elvish</option>
+						<option value="Giant">Giant</option>
+						<option value="Gith">Gith</option>
+						<option value="Gnoll">Gnoll</option>
+						<option value="Gnomish">Gnomish</option>
+						<option value="Goblin">Goblin</option>
+						<option value="Halfling">Halfling</option>
+						<option value="Ignan">Ignan</option>
+						<option value="Infernal">Infernal</option>
+						<option value="Orc">Orc</option>
+						<option value="Primordial">Primordial</option>
+						<option value="Slaad">Slaad</option>
+						<option value="Sylvan">Sylvan</option>
+						<option value="Terran">Terran</option>
+						<option value="Thieves_Cant">Thieves' Cant</option>
+						<option value="Thri-Kreen">Thri-Kreen</option>
+						<option value="Troglodyte">Troglodyte</option>
+						<option value="Undercommon">Undercommon</option>
+					</select>
 		</div>
 	</div>
 		
@@ -328,8 +553,8 @@
 			<th>Path of the Totem Warrior</th>
 			</tr>
 			<tr>
-			<td><input type="radio" name="Character_SubClass"  onclick="store_Subclass(this.value)" value="Barbarian_Berserker"></td>
-			<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Barbarian_Totem_Warrior"></td>
+			<td><input type="radio" name="Character_SubClass"  onclick="store_Data(this.value, 'Subclass')" value="Barbarian_Berserker"></td>
+			<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Barbarian_Totem_Warrior"></td>
 			</tr>
 			</table>
 		</div>
@@ -341,8 +566,8 @@
 					<th>College of Valor</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Bard_Lore"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Bard_Valor"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Bard_Lore"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Bard_Valor"></td>
 				</tr>
 			</table>
 		</div>
@@ -356,10 +581,10 @@
 					<th>Nature Domain</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Knowledge"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Life"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Light"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Nature"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Knowledge"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Life"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Light"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Nature"></td>
 				</tr>
 				<tr>
 					<th>Tempest Domain</th>
@@ -367,9 +592,9 @@
 					<th>War Domain</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Tempest"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_Trickery"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Cleric_War"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Tempest"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_Trickery"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Cleric_War"></td>
 				</tr>
 			</table>
 		</div>
@@ -381,8 +606,8 @@
 					<th>Circle of the Moon</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Druid_Land"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Druid_Moon"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Druid_Land"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Druid_Moon"></td>
 				</tr>
 				</table>
 		</div>
@@ -395,9 +620,9 @@
 					<th>Eldritch Knight</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Fighter_Champion"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Fighter_Battle"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Fighter_Eldritch"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Fighter_Champion"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Fighter_Battle"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Fighter_Eldritch"></td>
 				</tr>
 			</table>
 		</div>
@@ -410,9 +635,9 @@
 					<th>Way of the Four Elements</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Monk_Open_Hand"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Monk_Shadow"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Monk_Four_Elements"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Monk_Open_Hand"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Monk_Shadow"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Monk_Four_Elements"></td>
 				</tr>
 			</table>
 		</div>
@@ -425,9 +650,9 @@
 					<th>Oath of Vengeance</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Paladin_Devotion"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Paladin_Ancients"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Paladin_Vengeance"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Paladin_Devotion"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Paladin_Ancients"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Paladin_Vengeance"></td>
 				</tr>
 			</table>
 		</div>
@@ -439,8 +664,8 @@
 					<th>Beast Master</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Ranger_Hunter"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Ranger_Beast_Master"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Ranger_Hunter"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Ranger_Beast_Master"></td>
 				</tr>
 			</table>
 		</div>
@@ -453,9 +678,9 @@
 					<th>Arcane Trickster</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Rogue_Thief"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Rogue_Assassin"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Rogue_Arcane"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Rogue_Thief"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Rogue_Assassin"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Rogue_Arcane"></td>
 				</tr>
 			</table>
 		</div>
@@ -467,8 +692,8 @@
 					<th>Wild Magic</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Sorceror_Draconic"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Sorceror_Wild"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Sorceror_Draconic"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Sorceror_Wild"></td>
 				</tr>
 			</table>
 		</div>
@@ -481,9 +706,9 @@
 					<th>The Great Old One</th>
 				</tr>
 				<tr>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Warlock_Archfay"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Warlock_Fiend"></td>
-					<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Warlock_Great_Old_One"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Warlock_Archfay"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Warlock_Fiend"></td>
+					<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Warlock_Great_Old_One"></td>
 				</tr>
 			</table>
 		</div>
@@ -497,10 +722,10 @@
 				<th>School of Enchantment</th>
 			</tr>
 			<tr>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Abjuration"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Conjuration"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)"value="Wizard_Divination"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Enchantment"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Abjuration"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Conjuration"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')"value="Wizard_Divination"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Enchantment"></td>
 			</tr>
 			<tr>
 				<th>School of Evocation</th>
@@ -509,10 +734,10 @@
 				<th>School of Transmutation</th>
 			</tr>
 			<tr>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Evocation"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Illusion"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Necromancy"></td>
-				<td><input type="radio" name="Character_SubClass" onclick="store_Subclass(this.value)" value="Wizard_Transmutation"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Evocation"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Illusion"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Necromancy"></td>
+				<td><input type="radio" name="Character_SubClass" onclick="store_Data(this.value, 'Subclass')" value="Wizard_Transmutation"></td>
 				</tr>
 			</table>
 		</div>
@@ -591,12 +816,8 @@
 		</div>
 	
 		<div id="section_6" hidden="true">
+		<h2>Alignment</h2>
 		<table>
-			<tr>
-			<th></th>
-			<th>Alignment</th>
-			<th></th>
-			</tr>
 			<tr>
 				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Lawful Good"> Lawful Good </td>
 				<td><input type="radio" name="alignment_name" onclick="store_Alignment(this.value)" id="alignment_id" value="Neutral Good"> Neutral Good</td>
@@ -616,18 +837,9 @@
 		</div>
 		
 		<div id="section_7" hidden="true">
-		<table>
-			<tr>
-				<th>Racial Bonuses</th>
-				<th>Class Bonuses</th>
-				<th>Other Bonuses</th>
-			</tr>
-			<tr>
-				<td><textarea id="Racial_Bonus" rows="10"> </textarea></td>
-				<td><textarea id="Class_Bonus" rows="10"> </textarea></td>
-				<td><textarea id="Other_Bonus" rows="10"> </textarea></td>
-			</tr>
-		</table>
+		<h2>Review Character</h2>
+		<input type="button" onclick="" value="Generate Character">
+		Todo: jscript fill in data
 		</div>
 		
 		<div id="section_8" hidden="true">
@@ -638,6 +850,9 @@
 		</div>
 </form>
 </div>
+</div>
+<!-- End Char creator -->
+
 	<div id="pdfPages" hidden="true">
 	<div id="canvas1">
 	<canvas id="mycanvas"></canvas>
@@ -649,6 +864,7 @@
 	<canvas id="canvasPDF3"></canvas>
 	</div>
 	</div>
+	
 
 	<script type="text/processing" data-processing-target="mycanvas">
 	void setup()
@@ -716,7 +932,8 @@
 	}
 	</script>
 	
-	<div id="footer"></div>
+	<div id="footer">
+	</div>
 
 </body>
 </html>

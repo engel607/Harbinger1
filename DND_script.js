@@ -61,9 +61,12 @@ var lastScreen = 8;
 	function navVisibility(){
 		for(i=1;i<9;i++){
 			document.getElementById("section_" + String(i)).hidden = true;
+			document.getElementById("section_i" + String(i)).hidden = true;
 		}
 		var newScreen = "section_" + String(currentScreen);
+		var newScreenI = "section_i" + String(currentScreen);
 		document.getElementById(newScreen).hidden = false;
+		document.getElementById(newScreenI).hidden = false;
 	}
 	
 	function detailed_Race(Character_Race){
@@ -163,11 +166,16 @@ var lastScreen = 8;
 	function store_Subrace(Character_Subrace){
 		vCharacter_Sub_Race = Character_Subrace;
 		document.getElementById("rb_default").hidden = true;
+		document.getElementById("rb_dwarf").hidden = true;
 		document.getElementById("rb_highelf").hidden = true;
 		document.getElementById("rb_human").hidden = true;
 		document.getElementById("rb_dragonborn").hidden = true;
 		document.getElementById("rb_halfelf").hidden = true
 		switch(String(vCharacter_Sub_Race)) {
+			case "Hill_Dwarf":
+			case "Mountain_Dwarf":
+				document.getElementById("rb_dwarf").hidden = false;
+				break;
 			case "High_Elf":
 				document.getElementById("rb_highelf").hidden = false;
 				break;
@@ -184,23 +192,6 @@ var lastScreen = 8;
 				document.getElementById("rb_default").hidden = false;
 				break;		
 		}
-	}
-	
-	function store_Subclass(Character_Subclass){
-		vCharacter_Sub_Class = Character_Subclass;
-	}
-	
-	function store_Level(Character_Level){
-		vCharacter_Level = Character_Level;
-		
-	}
-	
-	function store_PName(Player_Name){
-		vCharacter_Player_Name = Player_Name;
-	}
-	
-	function store_CName(Character_Name){
-		vCharacter_Name = Character_Name;
 	}
 	
 	function store_Age(Character_Age){
@@ -357,6 +348,65 @@ var lastScreen = 8;
 	var high3 = roll1 + roll3 + roll4;
 	var high4 = roll2 + roll3 + roll4;
 	return Math.max(high1,high2,high3,high4);
+	}
+	
+	function store_Data(data, typeOfData){
+		switch(String(typeOfData)) {
+			case "Subclass":
+				vCharacter_Sub_Class = data;
+				break;
+			case "Level":
+				vCharacter_Level = data;
+				break;
+			case "Player_Name":
+				vCharacter_Player_Name = data;
+				break;
+			case "Character_Name":
+				vCharacter_Name = data;
+				break;
+			case "Gender":
+				vCharacter_Gender = data;
+				break;
+			case "Age":
+				vCharacter_Age = data;
+				break;
+			case "Hair_Color":
+				vCharacter_Hair_Color = data;
+				break;
+			case "Eye_Color":
+				vCharacter_Eye_Color = data;
+				break;
+			case "Skin_Color":
+				vCharacter_Skin_Color = data;
+				break;
+			case "Height_ft":
+				vCharacter_Height_ft = data;
+				break;
+			case "Height_in":
+				vCharacter_Height_in = data;
+				break;
+			case "Weight":
+				vCharacter_Weight = data;
+				break;
+				
+				
+		}
+	
+	}
+	
+	function store_race_bonus(data, typeOfData){
+	switch(String(typeOfData)) {
+		case "tool":
+			break;
+		case "cantrip":
+			break;
+		case "language":
+			break;
+		case "ability":
+			break;
+		case "skill":
+			break;
+	}
 	}
 	
 	function racialBonus(){
