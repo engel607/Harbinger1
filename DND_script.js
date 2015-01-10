@@ -350,6 +350,11 @@ var lastScreen = 8;
 	return Math.max(high1,high2,high3,high4);
 	}
 	
+	function set_char_portrait(){
+		char_portrait = document.getElementById("char_portrait").value;
+		document.getElementById("char_portrait_img").src = char_portrait;
+	}
+	
 	function store_Data(data, typeOfData){
 		switch(String(typeOfData)) {
 			case "Subclass":
